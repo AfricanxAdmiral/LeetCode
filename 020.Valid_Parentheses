@@ -1,0 +1,43 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        vector<char> stack;
+        for (string::iterator itr = s.begin(); itr != s.end(); itr++) {
+            switch(*itr) {
+                case '(':
+                    stack.push_back('(');
+                    break;
+                case ')':
+                    if (!stack.empty()) {
+                        if ('(' != stack.back()) return false;
+                        else stack.pop_back();
+                    }
+                    else return false;
+                    break;
+                case '[':
+                    stack.push_back('[');
+                    break;
+                case ']':
+                    if (!stack.empty()) {
+                        if ('[' != stack.back()) return false;
+                        else stack.pop_back();
+                    }
+                    else return false;
+                    break;
+                case '{':
+                    stack.push_back('{');
+                    break;
+                case '}':
+                    if (!stack.empty()) {
+                        if ('{' != stack.back()) return false;
+                        else stack.pop_back();
+                    }
+                    else return false;
+                    break;
+            }
+            printf("%c ", *itr);
+        }
+        if (stack.empty()) return true;
+        else return false;
+    }
+};
